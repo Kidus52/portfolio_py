@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="about-hero">
+    <div class="about-container">
+        <div class="profile-card">
+            <div class="profile-avatar-wrapper">
+                <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="Kidus Tigistu" class="profile-avatar-img" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
+                <div class="avatar-placeholder" id="avatarFallback" style="display: none;">
+                    <span>KT</span>
+                </div>
+            </div>
+            <div class="profile-quick-info">
+                <h3>Kidus Tigistu</h3>
+                <p class="role-title"><i class="fa-solid fa-graduation-cap"></i> Senior CS Student</p>
+                <p class="location-text"><i class="fa-solid fa-location-dot"></i> Hilcoe School of CS & Tech</p>
+            </div>
+        </div>
+        
+        <div class="about-bio">
+            <span class="sub-heading">Biography</span>
+            <h1>Turning Logic into Digital Experiences</h1>
+            <p>
+                Hi! I'm <strong>Kidus Tigistu</strong>, a Computer Science senior at Hilcoe. My journey into software development started with a deep curiosity about how software shapes our daily tools and evolved into a focused drive to engineer reliable, full-stack solutions.
+            </p>
+            <p>
+                Over the course of my academic and personal projects, I've designed and developed diverse applications—ranging from secure <strong>Banking Systems</strong> with transaction logs to responsive <strong>Class Timetable Schedulers</strong> and <strong>Flight Reservation Portals</strong>.
+            </p>
+            <blockquote class="quote-card">
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <p>"Code is my medium for innovation, problem-solving, and shaping the future."</p>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<section class="timeline-section">
+    <h2><i class="fa-solid fa-timeline"></i> Academic Journey & Milestones</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">Current (Senior Year)</span>
+                <h3>B.Sc. in Computer Science</h3>
+                <h4>Hilcoe School of Computer Science & Technology</h4>
+                <p>Focusing on advanced web technologies, database management systems, software engineering principles, algorithms, and system architecture.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">2023 - 2025</span>
+                <h3>Full-Stack Application Development</h3>
+                <h4>Projects & System Building</h4>
+                <p>Engineered core projects including a Web-Based Banking System (Flask/MySQL), Class Scheduler, and Flight Reservation System with interactive UI.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="values-section">
+    <h2>What I Value</h2>
+    <div class="values-grid">
+        <div class="value-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Clean & Secure Code</h3>
+            <p>Writing maintainable, scalable, and secure application logic prioritizing data safety.</p>
+        </div>
+        <div class="value-card">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>Intuitive UX/UI</h3>
+            <p>Designing modern, accessible, and responsive user interfaces for seamlessly smooth experiences.</p>
+        </div>
+        <div class="value-card">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>Continuous Growth</h3>
+            <p>Constantly learning modern frameworks, patterns, and best practices to deliver top tier software.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

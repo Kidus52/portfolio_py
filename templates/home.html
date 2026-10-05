@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+            Available for Opportunities & Projects
+        </div>
+        <h1>Hi, I'm <span class="highlight">Kidus Tigistu</span></h1>
+        <div class="typewriter-wrapper">
+            I am a <span id="typewriter"></span><span class="cursor">|</span>
+        </div>
+        <p class="hero-description">
+            A full-stack software developer and senior CS student at Hilcoe with a passion for building clean, performant web applications, secure backends, and elegant solutions.
+        </p>
+        <div class="hero-cta-group">
+            <a href="/projects" class="cta-button primary-btn">
+                <i class="fa-solid fa-rocket"></i> View My Work
+            </a>
+            <a href="/contact" class="cta-button secondary-btn">
+                <i class="fa-solid fa-paper-plane"></i> Contact Me
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About / Journey Highlight Section -->
+<section class="home-info">
+    <div class="info-card">
+        <div class="info-icon">
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <div class="info-text">
+            <h2>About My Journey</h2>
+            <p>
+                I’m currently a senior Computer Science student at Hilcoe. What started as curiosity with coding has grown into a real passion for building useful things with code. I mostly work with Python (Flask), HTML/CSS, JavaScript, and databases. Whether it’s a banking system, scheduler, or any other project, I focus on making it clean, secure, and user-friendly.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="featured-projects">
+    <div class="section-header">
+        <h2>Featured Projects</h2>
+        <a href="/projects" class="see-all-link">View All Projects <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="project-grid">
+        {% for project in projects %}
+        <div class="project-card" data-category="{{ project.category }}">
+            <div class="card-image-wrapper">
+                <div class="card-fallback-bg">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <span class="category-badge">{{ project.category | upper }}</span>
+            </div>
+            <div class="card-content">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.short_desc }}</p>
+                <div class="tech-tags">
+                    {% for tag in project.tech %}
+                    <span class="tech-tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn-card primary-btn open-modal-btn"
+                       data-title="{{ project.title }}"
+                       data-category="{{ project.category }}"
+                       data-desc="{{ project.full_desc }}"
+                       data-tech="{{ project.tech | join(', ') }}"
+                       data-github="{{ project.github }}">
+                        <i class="fa-solid fa-circle-info"></i> Details
+                    </a>
+                    <a href="{{ project.github }}" target="_blank" class="btn-card secondary-btn">
+                        <i class="fa-brands fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Core Skills Preview -->
+<section class="tech-stack">
+    <div class="section-header">
+        <h2>Core Technologies</h2>
+        <a href="/about" class="see-all-link">Full Skills Breakdown <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="skills-grid">
+        {% for category, items in skills.items() %}
+        <div class="skill-category-card">
+            <h3>{{ category }}</h3>
+            <ul class="skill-chips">
+                {% for skill in items %}
+                <li class="skill-chip">
+                    <i class="{{ skill.icon }}"></i>
+                    <span class="chip-name">{{ skill.name }}</span>
+                    <span class="chip-level">{{ skill.level }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Project Details Modal -->
+<div id="projectModal" class="modal">
+    <div class="modal-content glass-modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <span id="modalCategory" class="category-badge"></span>
+            <h2 id="modalTitle"></h2>
+        </div>
+        <div class="modal-body">
+            <p id="modalDesc"></p>
+            <h4>Technologies Used</h4>
+            <div id="modalTechTags" class="tech-tags"></div>
+        </div>
+        <div class="modal-footer">
+            <a id="modalGithub" href="#" target="_blank" class="cta-button primary-btn">
+                <i class="fa-brands fa-github"></i> View GitHub Repository
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

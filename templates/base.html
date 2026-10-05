@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidus Tigistu | Full Stack Developer</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+<body class="{{ page }}">
+    <header class="sticky">
+        <nav>
+            <a href="/" class="logo">
+                <span class="logo-accent">&lt;</span>Kidus<span class="logo-accent">/&gt;</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="{% if page == 'home' %}active{% endif %}">Home</a></li>
+                <li><a href="/about" class="{% if page == 'about' %}active{% endif %}">About</a></li>
+                <li><a href="/projects" class="{% if page == 'projects' %}active{% endif %}">Projects</a></li>
+                <li><a href="/contact" class="{% if page == 'contact' %}active{% endif %}">Contact</a></li>
+                <li><a href="/contact" class="btn-nav-cta"><i class="fa-solid fa-paper-plane"></i> Hire Me</a></li>
+            </ul>
+            <div class="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>© 2026 <strong>Kidus Tigistu</strong>. Crafted with passion & code.</p>
+            <div class="social-links">
+                <a href="https://github.com/Kidus52" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://t.me/@THEYCALLMESAINTLMAO" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.instagram.com/_____kidus_____" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:kidustigistu3410@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

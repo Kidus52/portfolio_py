@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="contact-hero">
+    <h1>Let's Connect</h1>
+    <p class="subtitle">Have a project idea, collaboration proposal, or job opportunity? Feel free to reach out!</p>
+</section>
+
+<!-- Flash Alerts -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+        <div class="flash-alert alert-{{ category }}">
+          <i class="fa-solid fa-circle-check"></i> {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="contact-wrapper">
+    <!-- Contact Cards Sidebar -->
+    <div class="contact-info-cards">
+        <div class="info-item-card">
+            <div class="info-card-icon">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="info-card-detail">
+                <h4>Email</h4>
+                <a href="mailto:kidustigistu3410@gmail.com">kidustigistu3410@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="info-item-card">
+            <div class="info-card-icon">
+                <i class="fa-brands fa-telegram"></i>
+            </div>
+            <div class="info-card-detail">
+                <h4>Telegram</h4>
+                <a href="https://t.me/@THEYCALLMESAINTLMAO" target="_blank">@THEYCALLMESAINTLMAO</a>
+            </div>
+        </div>
+
+        <div class="info-item-card">
+            <div class="info-card-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div class="info-card-detail">
+                <h4>Instagram</h4>
+                <a href="https://www.instagram.com/_____kidus_____" target="_blank">@_____kidus_____</a>
+            </div>
+        </div>
+
+        <div class="info-item-card">
+            <div class="info-card-icon">
+                <i class="fa-brands fa-github"></i>
+            </div>
+            <div class="info-card-detail">
+                <h4>GitHub</h4>
+                <a href="https://github.com/Kidus52" target="_blank">github.com/Kidus52</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Contact Form -->
+    <div class="contact-form-container glass-card">
+        <h3>Send Me a Message</h3>
+        <form action="/contact" method="POST" class="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email *</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Job Opportunity">
+            </div>
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Hi Kidus, I would like to discuss..." required></textarea>
+            </div>
+            <button type="submit" class="cta-button primary-btn btn-submit">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+

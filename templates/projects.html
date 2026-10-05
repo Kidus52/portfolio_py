@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="projects-header">
+    <h1>Featured Projects</h1>
+    <p class="subtitle">A collection of full-stack web applications and software systems built with Python, JavaScript, and modern database architectures.</p>
+    
+    <!-- Filter Buttons -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+        <button class="filter-btn" data-filter="web">Web Apps</button>
+    </div>
+</section>
+
+<section class="projects-gallery">
+    <div class="project-grid">
+        {% for project in projects %}
+        <div class="project-card" data-category="{{ project.category }}">
+            <div class="card-image-wrapper">
+                <div class="card-fallback-bg">
+                    <i class="fa-solid fa-code-laptop"></i>
+                </div>
+                <span class="category-badge">{{ project.category | upper }}</span>
+            </div>
+            
+            <div class="card-content">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.short_desc }}</p>
+                
+                <div class="tech-tags">
+                    {% for tech in project.tech %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="card-actions">
+                    <a href="{{ project.github }}" target="_blank" class="btn-card btn-outline">
+                        <i class="fa-brands fa-github"></i> Code
+                    </a>
+                    <button class="btn-card btn-filled open-modal-btn" 
+                            data-title="{{ project.title }}" 
+                            data-category="{{ project.category | upper }}"
+                            data-desc="{{ project.full_desc }}" 
+                            data-tech="{{ project.tech | join(', ') }}"
+                            data-github="{{ project.github }}">
+                        <i class="fa-solid fa-eye"></i> Details
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Project Details Modal -->
+<div id="projectModal" class="modal">
+    <div class="modal-content glass-card">
+        <span class="close-modal">&times;</span>
+        <span id="modalCategory" class="modal-badge"></span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDesc"></p>
+        <div class="modal-tech-section">
+            <h4>Tech Stack Used:</h4>
+            <div id="modalTechTags" class="tech-tags"></div>
+        </div>
+        <div class="modal-actions">
+            <a id="modalGithub" href="#" target="_blank" class="btn-card btn-filled">
+                <i class="fa-brands fa-github"></i> View GitHub Repository
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
