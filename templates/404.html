@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="error-section">
+    <div class="error-container glass-card">
+        <div class="error-badge">
+            <i class="fa-solid fa-triangle-exclamation"></i> Error 404
+        </div>
+        <h1 class="error-code">4<span class="highlight">0</span>4</h1>
+        <h2>Lost in Cyberspace?</h2>
+        <p class="error-description">
+            The page or digital coordinate you are looking for has been relocated, deleted, or never existed in the repository.
+        </p>
+        <div class="error-cta-group">
+            <a href="/" class="cta-button primary-btn">
+                <i class="fa-solid fa-house"></i> Return to Safety
+            </a>
+            <a href="/projects" class="cta-button secondary-btn">
+                <i class="fa-solid fa-laptop-code"></i> View Projects
+            </a>
+            <a href="/contact" class="cta-button secondary-btn">
+                <i class="fa-solid fa-paper-plane"></i> Get in Touch
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
