@@ -12,17 +12,18 @@
             I am a <span id="typewriter"></span><span class="cursor">|</span>
         </div>
         <p class="hero-description">
-            A full-stack software developer and senior CS student at Hilcoe with a passion for building clean, performant web applications, secure backends, and elegant solutions.
+            A full-stack software developer and senior CS student at Hilcoe with a passion for building clean,
+            performant web applications, secure backends, and elegant solutions.
         </p>
         <div class="hero-cta-group">
             <a href="/projects" class="cta-button primary-btn">
                 <i class="fa-solid fa-rocket"></i> View My Work
             </a>
-            <a href="{{ url_for('static', filename='resume.pdf') }}" download="Kidus_Tigistu_Resume.pdf" class="cta-button resume-btn" target="_blank">
+            <a href="{{ url_for('static', filename='kidusresume.pdf') }}" download="Kidus_Tigistu_Resume.pdf"
+                class="cta-button resume-btn" target="_blank">
                 <i class="fa-solid fa-file-arrow-down"></i> Download Resume
-            </a>
-            <a href="/contact" class="cta-button secondary-btn">
-                <i class="fa-solid fa-paper-plane"></i> Contact Me
+            </a <a href="/contact" class="cta-button secondary-btn">
+            <i class="fa-solid fa-paper-plane"></i> Contact Me
             </a>
         </div>
     </div>
@@ -37,7 +38,10 @@
         <div class="info-text">
             <h2>About My Journey</h2>
             <p>
-                I’m currently a senior Computer Science student at Hilcoe. What started as curiosity with coding has grown into a real passion for building useful things with code. I mostly work with Python (Flask), HTML/CSS, JavaScript, and databases. Whether it’s a banking system, scheduler, or any other project, I focus on making it clean, secure, and user-friendly.
+                I’m currently a senior Computer Science student at Hilcoe. What started as curiosity with coding has
+                grown into a real passion for building useful things with code. I mostly work with Python (Flask),
+                HTML/CSS, JavaScript, and databases. Whether it’s a banking system, scheduler, or any other project, I
+                focus on making it clean, secure, and user-friendly.
             </p>
         </div>
     </div>
@@ -67,12 +71,9 @@
                     {% endfor %}
                 </div>
                 <div class="card-actions">
-                    <a href="#" class="btn-card primary-btn open-modal-btn"
-                       data-title="{{ project.title }}"
-                       data-category="{{ project.category }}"
-                       data-desc="{{ project.full_desc }}"
-                       data-tech="{{ project.tech | join(', ') }}"
-                       data-github="{{ project.github }}">
+                    <a href="#" class="btn-card primary-btn open-modal-btn" data-title="{{ project.title }}"
+                        data-category="{{ project.category }}" data-desc="{{ project.full_desc }}"
+                        data-tech="{{ project.tech | join(', ') }}" data-github="{{ project.github }}">
                         <i class="fa-solid fa-circle-info"></i> Details
                     </a>
                     <a href="{{ project.github }}" target="_blank" class="btn-card secondary-btn">

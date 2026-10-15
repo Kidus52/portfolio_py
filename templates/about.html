@@ -4,7 +4,9 @@
     <div class="about-container">
         <div class="profile-card">
             <div class="profile-avatar-wrapper">
-                <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="Kidus Tigistu" class="profile-avatar-img" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
+                <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="Kidus Tigistu"
+                    class="profile-avatar-img"
+                    onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
                 <div class="avatar-placeholder" id="avatarFallback" style="display: none;">
                     <span>KT</span>
                 </div>
@@ -15,23 +17,28 @@
                 <p class="location-text"><i class="fa-solid fa-location-dot"></i> Hilcoe School of CS & Tech</p>
             </div>
         </div>
-        
+
         <div class="about-bio">
             <span class="sub-heading">Biography</span>
             <h1>Turning Logic into Digital Experiences</h1>
             <p>
-                Hi! I'm <strong>Kidus Tigistu</strong>, a Computer Science senior at Hilcoe. My journey into software development started with a deep curiosity about how software shapes our daily tools and evolved into a focused drive to engineer reliable, full-stack solutions.
+                Hi! I'm <strong>Kidus Tigistu</strong>, a Computer Science senior at Hilcoe. My journey into software
+                development started with a deep curiosity about how software shapes our daily tools and evolved into a
+                focused drive to engineer reliable, full-stack solutions.
             </p>
             <p>
-                Over the course of my academic and personal projects, I've designed and developed diverse applications—ranging from secure <strong>Banking Systems</strong> with transaction logs to responsive <strong>Class Timetable Schedulers</strong> and <strong>Flight Reservation Portals</strong>.
+                Over the course of my academic and personal projects, I've designed and developed diverse
+                applications—ranging from secure <strong>Banking Systems</strong> with transaction logs to responsive
+                <strong>Class Timetable Schedulers</strong> and <strong>Flight Reservation Portals</strong>.
             </p>
             <blockquote class="quote-card">
                 <i class="fa-solid fa-quote-left quote-icon"></i>
                 <p>"Code is my medium for innovation, problem-solving, and shaping the future."</p>
             </blockquote>
-            
+
             <div class="about-bio-actions">
-                <a href="{{ url_for('static', filename='resume.pdf') }}" download="Kidus_Tigistu_Resume.pdf" class="cta-button primary-btn" target="_blank">
+                <a href="{{ url_for('static', filename='kidusresume.pdf') }}" download="Kidus_Tigistu_Resume.pdf"
+                    class="cta-button primary-btn" target="_blank">
                     <i class="fa-solid fa-file-arrow-down"></i> Download Full Resume / CV
                 </a>
                 <a href="/contact" class="cta-button secondary-btn">
@@ -51,7 +58,8 @@
                 <span class="timeline-date">Current (Senior Year)</span>
                 <h3>B.Sc. in Computer Science</h3>
                 <h4>Hilcoe School of Computer Science & Technology</h4>
-                <p>Focusing on advanced web technologies, database management systems, software engineering principles, algorithms, and system architecture.</p>
+                <p>Focusing on advanced web technologies, database management systems, software engineering principles,
+                    algorithms, and system architecture.</p>
             </div>
         </div>
         <div class="timeline-item">
@@ -60,7 +68,8 @@
                 <span class="timeline-date">2023 - 2025</span>
                 <h3>Full-Stack Application Development</h3>
                 <h4>Projects & System Building</h4>
-                <p>Engineered core projects including a Web-Based Banking System (Flask/MySQL), Class Scheduler, and Flight Reservation System with interactive UI.</p>
+                <p>Engineered core projects including a Web-Based Banking System (Flask/MySQL), Class Scheduler, and
+                    Flight Reservation System with interactive UI.</p>
             </div>
         </div>
     </div>
