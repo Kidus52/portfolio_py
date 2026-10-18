@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kidus Tigistu | Full Stack Developer</title>
+    <title>Kidus Tigistu | Full Stack Developer & CS Student</title>
+    <meta name="description" content="Portfolio of Kidus Tigistu - Full-Stack Developer and Senior Computer Science student at Hilcoe specializing in Python, Flask, JavaScript, and modern database solutions.">
+    <meta name="keywords" content="Kidus Tigistu, Software Developer, Full Stack, Python, Flask, JavaScript, Portfolio, Hilcoe, Web Development">
+    <meta name="author" content="Kidus Tigistu">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kidus Tigistu | Full Stack Software Developer">
+    <meta property="og:description" content="Explore full-stack web applications, software systems, and engineering projects crafted with Python, Flask, and JavaScript.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/profile.jpg', _external=True) }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kidus Tigistu | Full Stack Software Developer">
+    <meta name="twitter:description" content="Explore full-stack web applications, software systems, and engineering projects crafted with Python, Flask, and JavaScript.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='img/profile.jpg', _external=True) }}">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}">
+    <link rel="alternate icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 </head>
 <body class="{{ page }}">
+    <!-- Reading Scroll Progress Bar -->
+    <div id="scrollProgressBar" class="scroll-progress-bar"></div>
     <header class="sticky">
         <nav>
             <a href="/" class="logo">
@@ -49,6 +69,11 @@
             </div>
         </div>
     </footer>
+    <!-- Floating Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

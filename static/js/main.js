@@ -154,4 +154,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 6. Scroll Progress Bar & Back to Top Floating Button
+    const progressBar = document.getElementById('scrollProgressBar');
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        
+        // Update reading progress bar
+        if (progressBar && docHeight > 0) {
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = `${scrollPercent}%`;
+        }
+
+        // Toggle back to top button visibility (appear after 300px)
+        if (backToTopBtn) {
+            if (scrollTop > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+    });
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
