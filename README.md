@@ -29,7 +29,14 @@
 - **✉️ Dual-Channel Contact Architecture**:
   - **SQLite Database Persistence**: Every incoming message is safely saved into `messages.db` with timestamps so no opportunity is ever lost.
   - **Automated SMTP Email Forwarding**: Optionally sends instant notification emails directly to your inbox when SMTP credentials are configured.
-- **📄 Direct Resume / CV Delivery**: One-click download button configured to deliver high-resolution PDF resumes with custom download filenames.
+- **📬 Private Messages Inbox Dashboard (`/admin/messages`)**:
+  - Secure, password-protected portal to review client inquiries stored in `messages.db`.
+  - Real-time unread counter, live keyword search filter, mark read/unread, and deletion actions.
+  - Direct 1-click email replies with pre-filled subject lines.
+- **💻 Interactive Developer CLI Terminal (KidusOS)**:
+  - Accessible via floating launcher or keyboard shortcuts (`Ctrl + K` or `~`).
+  - Supports commands: `help`, `about`, `skills`, `projects`, `resume`, `contact`, `admin`, `whoami`, `clear`, and `sudo hire kidus` (recruitment authorization easter egg).
+  - Terminal history navigation with <kbd>↑</kbd> / <kbd>↓</kbd> arrow keys.
 - **✨ Polish & Micro-Interactions**:
   - Dynamic Typewriter effect in the hero header.
   - Top viewport reading scroll-progress bar.
@@ -132,6 +139,7 @@ portfolio_py/
 | Variable | Default | Purpose |
 |---|---|---|
 | `SECRET_KEY` | Dev fallback | Flask session & flash message encryption |
+| `ADMIN_PASSWORD` | `kidus2026` | Passcode for `/admin/messages` inbox dashboard |
 | `FLASK_DEBUG` | `True` | Enables hot-reload during local development |
 | `MAIL_SERVER` | `smtp.gmail.com` | SMTP host for forwarding contact inquiries |
 | `MAIL_PORT` | `587` | TLS port for SMTP server |

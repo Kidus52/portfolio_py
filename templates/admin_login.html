@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="admin-login-section">
+    <div class="admin-login-card glass-card">
+        <div class="admin-icon-wrapper">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h2>Admin Authentication</h2>
+        <p class="admin-subtitle">Secure gateway to review, manage, and reply to client inquiries.</p>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages" style="margin-bottom: 1.5rem;">
+              {% for category, message in messages %}
+                <div class="flash-alert alert-{{ category }}">
+                  <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('admin_login', next=request.args.get('next', '')) }}" class="admin-login-form">
+            <div class="form-group">
+                <label for="password">Admin Passcode</label>
+                <div class="password-input-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter admin passcode" required autofocus>
+                </div>
+            </div>
+            <button type="submit" class="cta-button primary-btn btn-admin-unlock">
+                <i class="fa-solid fa-lock-open"></i> Unlock Dashboard
+            </button>
+        </form>
+
+        <div class="admin-hint">
+            <i class="fa-solid fa-circle-info"></i> Default dev passcode: <code>kidus2026</code> (or customize via <code>ADMIN_PASSWORD</code>).
+        </div>
+    </div>
+</section>
+{% endblock %}

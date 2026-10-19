@@ -69,10 +69,41 @@
             </div>
         </div>
     </footer>
+    <!-- Floating Terminal Launcher Trigger -->
+    <button id="terminalLauncher" class="terminal-launcher" aria-label="Open Interactive CLI Terminal" title="Developer Terminal (Ctrl+K or ~)">
+        <i class="fa-solid fa-terminal"></i>
+        <span class="launcher-tooltip">Terminal CLI <kbd>Ctrl+K</kbd></span>
+    </button>
+
     <!-- Floating Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
+
+    <!-- Interactive Terminal Modal (KidusOS CLI) -->
+    <div id="terminalModal" class="terminal-modal" role="dialog" aria-hidden="true" aria-label="Interactive Developer Terminal">
+        <div class="terminal-backdrop" id="terminalBackdrop"></div>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <span class="control-dot dot-close" id="terminalCloseBtn" title="Close Terminal"></span>
+                    <span class="control-dot dot-min" id="terminalMinBtn" title="Minimize"></span>
+                    <span class="control-dot dot-max" id="terminalMaxBtn" title="Maximize"></span>
+                </div>
+                <div class="terminal-title">
+                    <i class="fa-solid fa-terminal"></i> guest@kidus-portfolio: ~ (KidusOS v1.0)
+                </div>
+                <div class="terminal-shortcut-hint">ESC / 'exit' to close</div>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+                <div class="terminal-output" id="terminalOutput"></div>
+                <div class="terminal-input-row">
+                    <span class="terminal-prompt">visitor@kidus:~$</span>
+                    <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal command input" />
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>

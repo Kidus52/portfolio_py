@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="admin-dashboard-section">
+    <div class="admin-dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="admin-dashboard-header">
+            <div>
+                <span class="sub-heading"><i class="fa-solid fa-database"></i> SQLite Database Storage</span>
+                <h1>Client Inquiries Inbox</h1>
+                <p class="subtitle">Direct submissions stored persistently in <code>messages.db</code>.</p>
+            </div>
+            
+            <div class="admin-header-actions">
+                {% if unread_count > 0 %}
+                <form action="{{ url_for('admin_mark_all_read') }}" method="POST" style="display: inline;">
+                    <button type="submit" class="cta-button secondary-btn btn-sm">
+                        <i class="fa-solid fa-check-double"></i> Mark All Read
+                    </button>
+                </form>
+                {% endif %}
+                <a href="{{ url_for('admin_logout') }}" class="cta-button outline-btn btn-sm btn-logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Metric Badges Row -->
+        <div class="admin-metrics-row">
+            <div class="metric-card glass-card">
+                <div class="metric-icon"><i class="fa-solid fa-inbox"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Total Inquiries</span>
+                    <span class="metric-value" id="totalMsgCount">{{ total_count }}</span>
+                </div>
+            </div>
+
+            <div class="metric-card glass-card {% if unread_count > 0 %}has-unread{% endif %}">
+                <div class="metric-icon"><i class="fa-solid fa-bell"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Unread Messages</span>
+                    <span class="metric-value">{{ unread_count }}</span>
+                </div>
+            </div>
+
+            <div class="metric-card glass-card">
+                <div class="metric-icon"><i class="fa-solid fa-server"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Database Status</span>
+                    <span class="metric-value status-online">Connected</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flash alerts -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages" style="margin-bottom: 1.5rem;">
+              {% for category, message in messages %}
+                <div class="flash-alert alert-{{ category }}">
+                  <i class="fa-solid fa-circle-check"></i> {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Filter & Search Bar -->
+        <div class="admin-filter-bar glass-card">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="adminSearchInput" placeholder="Filter messages by sender, email, subject, or keywords..." autocomplete="off">
+            <span class="search-counter" id="searchCounter">{{ total_count }} message(s)</span>
+        </div>
+
+        <!-- Messages List -->
+        <div class="admin-messages-list" id="adminMessagesList">
+            {% if messages %}
+                {% for msg in messages %}
+                <div class="message-card glass-card {% if not msg.is_read %}unread-card{% endif %}" data-search="{{ msg.name|lower }} {{ msg.email|lower }} {{ msg.subject|lower }} {{ msg.message|lower }}">
+                    <div class="message-card-header">
+                        <div class="sender-info">
+                            <div class="sender-avatar">
+                                {{ msg.name[:1]|upper }}
+                            </div>
+                            <div>
+                                <h3 class="sender-name">{{ msg.name }}</h3>
+                                <a href="mailto:{{ msg.email }}?subject=Re: {{ msg.subject or 'Inquiry via Portfolio' }}" class="sender-email">
+                                    <i class="fa-solid fa-envelope"></i> {{ msg.email }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="message-meta-actions">
+                            {% if not msg.is_read %}
+                            <span class="badge-unread"><i class="fa-solid fa-circle"></i> NEW</span>
+                            {% else %}
+                            <span class="badge-read"><i class="fa-solid fa-check"></i> READ</span>
+                            {% endif %}
+                            
+                            <span class="message-timestamp">
+                                <i class="fa-regular fa-clock"></i> {{ msg.created_at }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="message-subject">
+                        <strong>Subject:</strong> {{ msg.subject or 'General Inquiry' }}
+                    </div>
+
+                    <div class="message-body">
+                        {{ msg.message }}
+                    </div>
+
+                    <div class="message-card-footer">
+                        <div class="footer-left">
+                            <span class="msg-id-tag">#ID: {{ msg.id }}</span>
+                        </div>
+                        <div class="footer-actions">
+                            <!-- Reply Button -->
+                            <a href="mailto:{{ msg.email }}?subject=Re: {{ msg.subject or 'Inquiry via Portfolio' }}" class="btn-card-action btn-reply">
+                                <i class="fa-solid fa-reply"></i> Reply via Email
+                            </a>
+
+                            <!-- Toggle Read Form -->
+                            <form action="{{ url_for('admin_toggle_read', msg_id=msg.id) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn-card-action btn-toggle-read">
+                                    {% if msg.is_read %}
+                                    <i class="fa-regular fa-envelope"></i> Mark Unread
+                                    {% else %}
+                                    <i class="fa-solid fa-envelope-open"></i> Mark Read
+                                    {% endif %}
+                                </button>
+                            </form>
+
+                            <!-- Delete Form -->
+                            <form action="{{ url_for('admin_delete_message', msg_id=msg.id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Delete message from {{ msg.name }}? This cannot be undone.');">
+                                <button type="submit" class="btn-card-action btn-delete">
+                                    <i class="fa-solid fa-trash-can"></i> Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-inbox-card glass-card">
+                    <div class="empty-icon"><i class="fa-solid fa-inbox"></i></div>
+                    <h3>Your Inbox is Currently Empty</h3>
+                    <p>New inquiries submitted through the <a href="/contact" class="term-link">Contact Form</a> will be recorded here automatically.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Live Search Filter for Messages
+    const searchInput = document.getElementById('adminSearchInput');
+    const cards = document.querySelectorAll('.message-card');
+    const counter = document.getElementById('searchCounter');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const searchData = card.getAttribute('data-search') || '';
+                if (searchData.includes(query)) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (counter) {
+                counter.textContent = `${visibleCount} message(s) shown`;
+            }
+        });
+    }
+});
+</script>
+{% endblock %}
