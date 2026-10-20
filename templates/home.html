@@ -57,10 +57,13 @@
         {% for project in projects %}
         <div class="project-card" data-category="{{ project.category }}">
             <div class="card-image-wrapper">
-                <div class="card-fallback-bg">
-                    <i class="fa-solid fa-laptop-code"></i>
+                <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }} Preview" class="card-mockup-img" loading="lazy">
+                <div class="card-badges-row">
+                    <span class="category-badge">{{ project.category | upper }}</span>
+                    <span class="status-pill status-{{ project.status_type }}">
+                        <i class="{{ project.status_icon }}"></i> {{ project.status }}
+                    </span>
                 </div>
-                <span class="category-badge">{{ project.category | upper }}</span>
             </div>
             <div class="card-content">
                 <h3>{{ project.title }}</h3>
@@ -71,9 +74,14 @@
                     {% endfor %}
                 </div>
                 <div class="card-actions">
-                    <a href="#" class="btn-card primary-btn open-modal-btn" data-title="{{ project.title }}"
-                        data-category="{{ project.category }}" data-desc="{{ project.full_desc }}"
-                        data-tech="{{ project.tech | join(', ') }}" data-github="{{ project.github }}">
+                    <a href="#" class="btn-card primary-btn open-modal-btn" 
+                        data-title="{{ project.title }}"
+                        data-category="{{ project.category }}" 
+                        data-desc="{{ project.full_desc }}"
+                        data-tech="{{ project.tech | join(', ') }}" 
+                        data-github="{{ project.github }}"
+                        data-image="{{ url_for('static', filename=project.image) }}"
+                        data-status="{{ project.status }}">
                         <i class="fa-solid fa-circle-info"></i> Details
                     </a>
                     <a href="{{ project.github }}" target="_blank" class="btn-card secondary-btn">
@@ -112,21 +120,27 @@
 
 <!-- Project Details Modal -->
 <div id="projectModal" class="modal">
-    <div class="modal-content glass-modal">
+    <div class="modal-content glass-card modal-lg">
         <span class="close-modal">&times;</span>
-        <div class="modal-header">
-            <span id="modalCategory" class="category-badge"></span>
+        <div class="modal-mockup-container">
+            <img id="modalMockupImg" src="" alt="Project Architecture Preview" class="modal-mockup-preview">
+        </div>
+        <div class="modal-info-body">
+            <div class="modal-header-badges">
+                <span id="modalCategory" class="modal-badge"></span>
+                <span id="modalStatusBadge" class="status-pill status-cyan"></span>
+            </div>
             <h2 id="modalTitle"></h2>
-        </div>
-        <div class="modal-body">
             <p id="modalDesc"></p>
-            <h4>Technologies Used</h4>
-            <div id="modalTechTags" class="tech-tags"></div>
-        </div>
-        <div class="modal-footer">
-            <a id="modalGithub" href="#" target="_blank" class="cta-button primary-btn">
-                <i class="fa-brands fa-github"></i> View GitHub Repository
-            </a>
+            <div class="modal-tech-section">
+                <h4>Tech Stack Used:</h4>
+                <div id="modalTechTags" class="tech-tags"></div>
+            </div>
+            <div class="modal-actions">
+                <a id="modalGithub" href="#" target="_blank" class="btn-card btn-filled">
+                    <i class="fa-brands fa-github"></i> View GitHub Repository
+                </a>
+            </div>
         </div>
     </div>
 </div>

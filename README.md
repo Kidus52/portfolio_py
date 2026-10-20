@@ -23,9 +23,11 @@
 
 - **⚡ Fast & Lightweight Backend**: Powered by Flask with minimal overhead, secure route handling, and clean Jinja2 templating.
 - **🎨 Glassmorphic & Cyber-Dark Aesthetic**: Custom CSS design system featuring deep navy backgrounds, glowing cyan/blue accents, backdrop filters, and fluid responsiveness across all screen sizes.
-- **📂 Interactive Project Gallery**:
+- **📂 Interactive Project Gallery with High-Fidelity UI Mockups**:
+  - Custom-crafted SVG architecture mockups (Virtual Banking UI, Timetable Matrix, Flight Reservation Seat Map).
+  - Hover zoom animations and dynamic status pills (`MySQL & SHA-256 Auth`, `0-Conflict Algorithm`, `Live Seat Booking`).
   - Live category filtering (All, Full-Stack, Web Apps).
-  - Rich interactive details modal displaying architecture overviews, tech badges, and direct GitHub source code links.
+  - Rich interactive details modal displaying full mockup previews, technical architecture overviews, and direct GitHub links.
 - **✉️ Dual-Channel Contact Architecture**:
   - **SQLite Database Persistence**: Every incoming message is safely saved into `messages.db` with timestamps so no opportunity is ever lost.
   - **Automated SMTP Email Forwarding**: Optionally sends instant notification emails directly to your inbox when SMTP credentials are configured.

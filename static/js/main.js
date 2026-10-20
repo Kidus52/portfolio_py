@@ -123,11 +123,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 const desc = btn.getAttribute('data-desc');
                 const techList = btn.getAttribute('data-tech').split(', ');
                 const github = btn.getAttribute('data-github');
+                const image = btn.getAttribute('data-image');
+                const status = btn.getAttribute('data-status');
 
                 document.getElementById('modalTitle').textContent = title;
                 document.getElementById('modalCategory').textContent = category;
                 document.getElementById('modalDesc').textContent = desc;
                 document.getElementById('modalGithub').setAttribute('href', github);
+
+                const modalImg = document.getElementById('modalMockupImg');
+                if (modalImg && image) {
+                    modalImg.setAttribute('src', image);
+                    modalImg.setAttribute('alt', `${title} Architecture Preview`);
+                }
+
+                const modalStatus = document.getElementById('modalStatusBadge');
+                if (modalStatus) {
+                    if (status) {
+                        modalStatus.textContent = status;
+                        modalStatus.style.display = 'inline-flex';
+                    } else {
+                        modalStatus.style.display = 'none';
+                    }
+                }
 
                 const techContainer = document.getElementById('modalTechTags');
                 techContainer.innerHTML = '';

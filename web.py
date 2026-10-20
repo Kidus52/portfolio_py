@@ -119,7 +119,10 @@ PROJECTS = [
         'category': 'fullstack',
         'short_desc': 'A secure full-stack banking application with real-time transaction processing and user account dashboards.',
         'full_desc': 'Built with Python (Flask) and MySQL database. Features robust authentication, password encryption, fund transfer management, transaction history logs, and administrative controls.',
-        'image': 'img/project1.jpg',
+        'image': 'img/mockup_banking.svg',
+        'status': 'MySQL & SHA-256 Auth',
+        'status_type': 'cyan',
+        'status_icon': 'fa-solid fa-shield-halved',
         'tech': ['Python', 'Flask', 'MySQL', 'HTML5', 'CSS3', 'JavaScript'],
         'github': 'https://github.com/Kidus52/Web-Based-Banking-System',
         'demo': '#'
@@ -130,7 +133,10 @@ PROJECTS = [
         'category': 'web',
         'short_desc': 'A web application that helps students and educators organize and optimize class timetables.',
         'full_desc': 'Developed using Python, JavaScript, and CSS. Resolves schedule conflicts, manages classroom allocations, and provides responsive schedule views for students.',
-        'image': 'img/project2.jpg',
+        'image': 'img/mockup_scheduler.svg',
+        'status': '0-Conflict Algorithm',
+        'status_type': 'green',
+        'status_icon': 'fa-solid fa-calendar-check',
         'tech': ['Python', 'JavaScript', 'HTML5', 'CSS3', 'SQLite'],
         'github': 'https://github.com/Kidus52/Class-Scheduler',
         'demo': '#'
@@ -141,7 +147,10 @@ PROJECTS = [
         'category': 'fullstack',
         'short_desc': 'A flight booking and scheduling system with real-time flight lookups and seat reservations.',
         'full_desc': 'Features dynamic flight search, seat selection, booking history, and admin schedule management using Flask, SQLite, and asynchronous JavaScript.',
-        'image': 'img/project3.jpg',
+        'image': 'img/mockup_flight.svg',
+        'status': 'Live Seat Booking',
+        'status_type': 'purple',
+        'status_icon': 'fa-solid fa-plane-departure',
         'tech': ['Python', 'Flask', 'SQLite', 'JavaScript', 'Bootstrap'],
         'github': 'https://github.com/Kidus52/Online-Flight-Scheduler',
         'demo': '#'
@@ -169,7 +178,7 @@ SKILLS = {
 
 @web.route('/', strict_slashes=False)
 def home():
-    return render_template("home.html", page='home', projects=PROJECTS[:2], skills=SKILLS)
+    return render_template("home.html", page='home', projects=PROJECTS, skills=SKILLS)
 
 @web.route('/about', strict_slashes=False)
 def about():

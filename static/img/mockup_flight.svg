@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="flightBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080e1c" />
+      <stop offset="50%" stop-color="#0e172e" />
+      <stop offset="100%" stop-color="#070c18" />
+    </linearGradient>
+
+    <linearGradient id="boardingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+
+    <linearGradient id="flightArc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <filter id="flightGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; }
+    .sans { font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="480" fill="url(#flightBg)" />
+
+  <!-- Subtle Navigation Map Contours -->
+  <g opacity="0.06" stroke="#38bdf8" stroke-width="1">
+    <circle cx="250" cy="240" r="120" fill="none" />
+    <circle cx="250" cy="240" r="200" fill="none" />
+    <line x1="0" y1="240" x2="800" y2="240" />
+    <line x1="250" y1="0" x2="250" y2="480" />
+  </g>
+
+  <!-- Top Application Bar -->
+  <rect x="25" y="20" width="750" height="50" rx="8" fill="#0f172a" fill-opacity="0.85" stroke="#1e293b" stroke-width="1" />
+  <circle cx="48" cy="45" r="5" fill="#ef4444" />
+  <circle cx="64" cy="45" r="5" fill="#f59e0b" />
+  <circle cx="80" cy="45" r="5" fill="#10b981" />
+
+  <text x="110" y="50" class="sans" font-size="13" font-weight="700" fill="#f8fafc">AERORESERVE</text>
+  <text x="220" y="50" class="mono" font-size="11" fill="#64748b">| Real-Time Flight Scheduling &amp; Seat Reservation Engine</text>
+
+  <!-- Status Pill Top Right -->
+  <rect x="585" y="31" width="175" height="28" rx="6" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.4" />
+  <circle cx="601" cy="45" r="4" fill="#a855f7" />
+  <text x="613" y="49" class="mono" font-size="10" font-weight="700" fill="#c084fc">FLIGHT ET-500 ACTIVE</text>
+
+  <!-- LEFT: Flight Route & Schedule Card -->
+  <g transform="translate(25, 85)">
+    <rect width="470" height="150" rx="10" fill="#0f172a" fill-opacity="0.75" stroke="#1e293b" stroke-width="1" />
+
+    <!-- Origin Airport -->
+    <text x="30" y="42" class="mono" font-size="24" font-weight="800" fill="#f8fafc">ADD</text>
+    <text x="30" y="60" class="sans" font-size="11" fill="#94a3b8">Addis Ababa Bole</text>
+    <text x="30" y="85" class="mono" font-size="16" font-weight="700" fill="#38bdf8">21:45</text>
+    <text x="30" y="100" class="mono" font-size="9" fill="#64748b">Terminal 2 • Gate B14</text>
+
+    <!-- Flight Route Arc Line -->
+    <path d="M 125 55 Q 235 20, 345 55" fill="none" stroke="url(#flightArc)" stroke-width="2.5" stroke-dasharray="6,4" filter="url(#flightGlow)" />
+    <!-- Plane Icon Center -->
+    <circle cx="235" cy="37" r="14" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1.5" />
+    <path d="M 230 37 L 240 37 M 235 32 L 235 42 M 232 34 L 238 40" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="235" y="65" class="mono" font-size="9" fill="#c084fc" text-anchor="middle">13h 45m Non-Stop</text>
+
+    <!-- Destination Airport -->
+    <text x="440" y="42" class="mono" font-size="24" font-weight="800" fill="#f8fafc" text-anchor="end">JFK</text>
+    <text x="440" y="60" class="sans" font-size="11" fill="#94a3b8" text-anchor="end">New York Kennedy</text>
+    <text x="440" y="85" class="mono" font-size="16" font-weight="700" fill="#34d399" text-anchor="end">06:30 <tspan font-size="10" fill="#94a3b8">(+1)</tspan></text>
+    <text x="440" y="100" class="mono" font-size="9" fill="#64748b" text-anchor="end">Terminal 4 • Arrival</text>
+
+    <!-- Aircraft Spec -->
+    <line x1="30" y1="115" x2="440" y2="115" stroke="#1e293b" stroke-width="1" />
+    <text x="30" y="134" class="sans" font-size="10" fill="#94a3b8">
+      Aircraft: <tspan fill="#f1f5f9" font-weight="600">Boeing 787-9 Dreamliner</tspan> • State: <tspan fill="#34d399">On Time</tspan>
+    </text>
+  </g>
+
+  <!-- LEFT BOTTOM: Interactive Seat Selection Map Preview -->
+  <g transform="translate(25, 250)">
+    <rect width="470" height="205" rx="10" fill="#0b1324" fill-opacity="0.85" stroke="#1e293b" stroke-width="1" />
+    <text x="25" y="28" class="sans" font-size="12" font-weight="700" fill="#94a3b8">CABIN SEAT SELECTOR (BUSINESS CLASS)</text>
+
+    <!-- Column labels -->
+    <text x="95" y="55" class="mono" font-size="10" fill="#64748b">A</text>
+    <text x="135" y="55" class="mono" font-size="10" fill="#64748b">B</text>
+    <text x="195" y="55" class="mono" font-size="9" fill="#475569">AISLE</text>
+    <text x="255" y="55" class="mono" font-size="10" fill="#64748b">D</text>
+    <text x="295" y="55" class="mono" font-size="10" fill="#64748b">E</text>
+
+    <!-- Row 10 -->
+    <text x="45" y="85" class="mono" font-size="10" fill="#64748b">Row 10</text>
+    <rect x="85" y="70" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+    <rect x="125" y="70" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+    <rect x="245" y="70" width="28" height="26" rx="4" fill="#0284c7" fill-opacity="0.25" stroke="#0284c7" stroke-width="1" />
+    <rect x="285" y="70" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+
+    <!-- Row 11 -->
+    <text x="45" y="125" class="mono" font-size="10" fill="#64748b">Row 11</text>
+    <rect x="85" y="110" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+    <rect x="125" y="110" width="28" height="26" rx="4" fill="#0284c7" fill-opacity="0.25" stroke="#0284c7" stroke-width="1" />
+    <rect x="245" y="110" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+    <rect x="285" y="110" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+
+    <!-- Row 12 (Selected Seat 12A) -->
+    <text x="45" y="165" class="mono" font-size="10" fill="#34d399" font-weight="700">Row 12</text>
+    <!-- SELECTED SEAT WITH GLOW -->
+    <rect x="85" y="150" width="28" height="26" rx="4" fill="#10b981" stroke="#34d399" stroke-width="1.5" filter="url(#flightGlow)" />
+    <text x="99" y="167" class="mono" font-size="9" font-weight="800" fill="#064e3b" text-anchor="middle">✓</text>
+    <rect x="125" y="150" width="28" height="26" rx="4" fill="#0284c7" fill-opacity="0.25" stroke="#0284c7" stroke-width="1" />
+    <rect x="245" y="150" width="28" height="26" rx="4" fill="#0284c7" fill-opacity="0.25" stroke="#0284c7" stroke-width="1" />
+    <rect x="285" y="150" width="28" height="26" rx="4" fill="#334155" fill-opacity="0.4" stroke="#475569" stroke-width="1" />
+
+    <!-- Selection Callout Right Side of Box -->
+    <rect x="330" y="145" width="125" height="36" rx="6" fill="#10b981" fill-opacity="0.12" stroke="#10b981" stroke-width="1" />
+    <text x="340" y="161" class="mono" font-size="10" font-weight="700" fill="#34d399">Seat 12A Window</text>
+    <text x="340" y="174" class="mono" font-size="8" fill="#a7f3d0">Extra Legroom • Free</text>
+  </g>
+
+  <!-- RIGHT: Digital Boarding Pass Preview -->
+  <g transform="translate(515, 85)">
+    <rect width="260" height="370" rx="14" fill="url(#boardingGrad)" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- Pass Header -->
+    <rect x="0" y="0" width="260" height="52" rx="14" fill="#0284c7" fill-opacity="0.25" />
+    <text x="20" y="32" class="sans" font-size="13" font-weight="800" fill="#ffffff">BOARDING PASS</text>
+    <text x="240" y="32" class="mono" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="end">ET-500</text>
+
+    <!-- Passenger Info -->
+    <text x="20" y="78" class="mono" font-size="8" fill="#64748b">PASSENGER NAME</text>
+    <text x="20" y="94" class="sans" font-size="13" font-weight="700" fill="#f8fafc">KIDUS TIGISTU</text>
+
+    <!-- Grid of Flight Info -->
+    <text x="20" y="125" class="mono" font-size="8" fill="#64748b">FLIGHT</text>
+    <text x="20" y="140" class="mono" font-size="12" font-weight="700" fill="#38bdf8">ET 500</text>
+
+    <text x="100" y="125" class="mono" font-size="8" fill="#64748b">GATE</text>
+    <text x="100" y="140" class="mono" font-size="12" font-weight="700" fill="#f8fafc">B14</text>
+
+    <text x="180" y="125" class="mono" font-size="8" fill="#64748b">BOARDING</text>
+    <text x="180" y="140" class="mono" font-size="12" font-weight="700" fill="#facc15">20:55</text>
+
+    <!-- Seat & Class -->
+    <rect x="15" y="160" width="230" height="58" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+    <text x="30" y="182" class="mono" font-size="9" fill="#94a3b8">SEAT ASSIGNMENT</text>
+    <text x="30" y="206" class="mono" font-size="20" font-weight="800" fill="#34d399">12A</text>
+
+    <text x="140" y="182" class="mono" font-size="9" fill="#94a3b8">CABIN CLASS</text>
+    <text x="140" y="205" class="sans" font-size="12" font-weight="800" fill="#c084fc">BUSINESS</text>
+
+    <!-- Dashed Tear Line -->
+    <line x1="0" y1="235" x2="260" y2="235" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4" />
+
+    <!-- Price & Confirmation -->
+    <text x="20" y="260" class="mono" font-size="9" fill="#64748b">RESERVATION STATUS</text>
+    <text x="20" y="280" class="sans" font-size="16" font-weight="800" fill="#f8fafc">$890.00 <tspan font-size="11" fill="#34d399">Confirmed</tspan></text>
+
+    <!-- Barcode Simulation -->
+    <g transform="translate(20, 295)">
+      <rect x="0" y="0" width="220" height="50" fill="#0b101b" rx="4" />
+      <!-- Barcode lines -->
+      <line x1="15" y1="8" x2="15" y2="42" stroke="#ffffff" stroke-width="3" />
+      <line x1="22" y1="8" x2="22" y2="42" stroke="#ffffff" stroke-width="1.5" />
+      <line x1="28" y1="8" x2="28" y2="42" stroke="#ffffff" stroke-width="4" />
+      <line x1="36" y1="8" x2="36" y2="42" stroke="#ffffff" stroke-width="1" />
+      <line x1="42" y1="8" x2="42" y2="42" stroke="#ffffff" stroke-width="2.5" />
+      <line x1="50" y1="8" x2="50" y2="42" stroke="#ffffff" stroke-width="5" />
+      <line x1="60" y1="8" x2="60" y2="42" stroke="#ffffff" stroke-width="1.5" />
+      <line x1="68" y1="8" x2="68" y2="42" stroke="#ffffff" stroke-width="3" />
+      <line x1="76" y1="8" x2="76" y2="42" stroke="#ffffff" stroke-width="2" />
+      <line x1="84" y1="8" x2="84" y2="42" stroke="#ffffff" stroke-width="4" />
+      <line x1="94" y1="8" x2="94" y2="42" stroke="#ffffff" stroke-width="1" />
+      <line x1="102" y1="8" x2="102" y2="42" stroke="#ffffff" stroke-width="3" />
+      <line x1="110" y1="8" x2="110" y2="42" stroke="#ffffff" stroke-width="2" />
+      <line x1="118" y1="8" x2="118" y2="42" stroke="#ffffff" stroke-width="4.5" />
+      <line x1="128" y1="8" x2="128" y2="42" stroke="#ffffff" stroke-width="1.5" />
+      <line x1="136" y1="8" x2="136" y2="42" stroke="#ffffff" stroke-width="3" />
+      <line x1="144" y1="8" x2="144" y2="42" stroke="#ffffff" stroke-width="2" />
+      <line x1="152" y1="8" x2="152" y2="42" stroke="#ffffff" stroke-width="4" />
+      <line x1="162" y1="8" x2="162" y2="42" stroke="#ffffff" stroke-width="1.5" />
+      <line x1="170" y1="8" x2="170" y2="42" stroke="#ffffff" stroke-width="3.5" />
+      <line x1="180" y1="8" x2="180" y2="42" stroke="#ffffff" stroke-width="1.5" />
+      <line x1="188" y1="8" x2="188" y2="42" stroke="#ffffff" stroke-width="4" />
+      <line x1="198" y1="8" x2="198" y2="42" stroke="#ffffff" stroke-width="2.5" />
+      <line x1="205" y1="8" x2="205" y2="42" stroke="#ffffff" stroke-width="2" />
+    </g>
+    <text x="130" y="358" class="mono" font-size="8" fill="#64748b" text-anchor="middle">ET*500*ADD*JFK*12A*2026</text>
+  </g>
+</svg>

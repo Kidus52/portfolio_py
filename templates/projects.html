@@ -17,10 +17,13 @@
         {% for project in projects %}
         <div class="project-card" data-category="{{ project.category }}">
             <div class="card-image-wrapper">
-                <div class="card-fallback-bg">
-                    <i class="fa-solid fa-code-laptop"></i>
+                <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }} Preview" class="card-mockup-img" loading="lazy">
+                <div class="card-badges-row">
+                    <span class="category-badge">{{ project.category | upper }}</span>
+                    <span class="status-pill status-{{ project.status_type }}">
+                        <i class="{{ project.status_icon }}"></i> {{ project.status }}
+                    </span>
                 </div>
-                <span class="category-badge">{{ project.category | upper }}</span>
             </div>
             
             <div class="card-content">
@@ -42,7 +45,9 @@
                             data-category="{{ project.category | upper }}"
                             data-desc="{{ project.full_desc }}" 
                             data-tech="{{ project.tech | join(', ') }}"
-                            data-github="{{ project.github }}">
+                            data-github="{{ project.github }}"
+                            data-image="{{ url_for('static', filename=project.image) }}"
+                            data-status="{{ project.status }}">
                         <i class="fa-solid fa-eye"></i> Details
                     </button>
                 </div>
@@ -54,19 +59,27 @@
 
 <!-- Project Details Modal -->
 <div id="projectModal" class="modal">
-    <div class="modal-content glass-card">
+    <div class="modal-content glass-card modal-lg">
         <span class="close-modal">&times;</span>
-        <span id="modalCategory" class="modal-badge"></span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalDesc"></p>
-        <div class="modal-tech-section">
-            <h4>Tech Stack Used:</h4>
-            <div id="modalTechTags" class="tech-tags"></div>
+        <div class="modal-mockup-container">
+            <img id="modalMockupImg" src="" alt="Project Architecture Preview" class="modal-mockup-preview">
         </div>
-        <div class="modal-actions">
-            <a id="modalGithub" href="#" target="_blank" class="btn-card btn-filled">
-                <i class="fa-brands fa-github"></i> View GitHub Repository
-            </a>
+        <div class="modal-info-body">
+            <div class="modal-header-badges">
+                <span id="modalCategory" class="modal-badge"></span>
+                <span id="modalStatusBadge" class="status-pill status-cyan"></span>
+            </div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <div class="modal-tech-section">
+                <h4>Tech Stack Used:</h4>
+                <div id="modalTechTags" class="tech-tags"></div>
+            </div>
+            <div class="modal-actions">
+                <a id="modalGithub" href="#" target="_blank" class="btn-card btn-filled">
+                    <i class="fa-brands fa-github"></i> View GitHub Repository
+                </a>
+            </div>
         </div>
     </div>
 </div>
