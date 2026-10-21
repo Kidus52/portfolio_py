@@ -206,6 +206,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 6.5 Color Accent & Theme Switcher (Option 5)
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeDropdown = document.getElementById('themeDropdown');
+    const themeOptBtns = document.querySelectorAll('.theme-opt-btn');
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio_theme', theme);
+        themeOptBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-theme-name') === theme);
+        });
+    }
+
+    const currentTheme = localStorage.getItem('portfolio_theme') || 'cyan';
+    applyTheme(currentTheme);
+
+    if (themeToggleBtn && themeDropdown) {
+        themeToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = themeDropdown.classList.contains('open');
+            if (isOpen) {
+                themeDropdown.classList.remove('open');
+                themeDropdown.setAttribute('aria-hidden', 'true');
+            } else {
+                themeDropdown.classList.add('open');
+                themeDropdown.setAttribute('aria-hidden', 'false');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!themeDropdown.contains(e.target) && e.target !== themeToggleBtn) {
+                themeDropdown.classList.remove('open');
+                themeDropdown.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        themeOptBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selected = btn.getAttribute('data-theme-name');
+                applyTheme(selected);
+                themeDropdown.classList.remove('open');
+                themeDropdown.setAttribute('aria-hidden', 'true');
+            });
+        });
+    }
+
     // 7. Interactive Developer Terminal (KidusOS CLI)
     const terminalLauncher = document.getElementById('terminalLauncher');
     const terminalModal = document.getElementById('terminalModal');
@@ -346,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="term-table-cmd">contact</div><div class="term-table-desc">Show social links, email, and direct channels</div>
   <div class="term-table-cmd">sudo hire kidus</div><div class="term-table-desc">Unlock recruitment authorization easter egg</div>
   <div class="term-table-cmd">admin / inbox</div><div class="term-table-desc">Open private client messages inbox portal</div>
+  <div class="term-table-cmd">theme [name]</div><div class="term-table-desc">Switch color accent (cyan, emerald, purple, crimson)</div>
   <div class="term-table-cmd">whoami</div><div class="term-table-desc">Display current user session info</div>
   <div class="term-table-cmd">date</div><div class="term-table-desc">Show current server date and time</div>
   <div class="term-table-cmd">clear</div><div class="term-table-desc">Clear the terminal screen</div>
@@ -455,6 +502,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     printLine(`<div class="term-cyan">${new Date().toLocaleString()}</div>`);
                     break;
 
+                case 'theme':
+                    const curTheme = localStorage.getItem('portfolio_theme') || 'cyan';
+                    printLine(`
+<div class="term-cyan">🎨 KidusOS Theme Manager:</div>
+<div>Active Accent Glow: <span class="term-yellow">${curTheme.toUpperCase()}</span></div>
+<div style="margin: 0.35rem 0;">Available Palettes:</div>
+<div>  • <span class="term-cyan">cyan</span> — Cyan Glow (Default)</div>
+<div>  • <span class="term-green">emerald</span> — Emerald Matrix</div>
+<div>  • <span class="term-purple">purple</span> — Purple Synthwave</div>
+<div>  • <span style="color: #f43f5e;">crimson</span> — Crimson Red</div>
+<div class="term-muted" style="margin-top: 0.35rem;">Usage: <span class="term-yellow">theme &lt;name&gt;</span> (e.g. <code>theme emerald</code>)</div>
+                    `);
+                    break;
+
+                case 'theme cyan':
+                case 'theme emerald':
+                case 'theme purple':
+                case 'theme crimson':
+                case 'theme matrix':
+                case 'theme synth':
+                case 'theme synthwave':
+                case 'theme red':
+                    const rawThemeArg = lower.replace('theme ', '').trim();
+                    const themeAliases = {
+                        'cyan': 'cyan',
+                        'emerald': 'emerald',
+                        'matrix': 'emerald',
+                        'purple': 'purple',
+                        'synth': 'purple',
+                        'synthwave': 'purple',
+                        'crimson': 'crimson',
+                        'red': 'crimson'
+                    };
+                    const targetTheme = themeAliases[rawThemeArg] || rawThemeArg;
+                    applyTheme(targetTheme);
+                    printLine(`
+<div class="term-green">✓ Accent glow successfully switched to [${targetTheme.toUpperCase()}]!</div>
+<div class="term-muted">Preference synchronized with navbar palette and saved to browser localStorage.</div>
+                    `);
+                    break;
+
                 case 'clear':
                 case 'cls':
                     terminalOutput.innerHTML = '';
@@ -466,6 +554,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
 
                 default:
+                    if (lower.startsWith('theme ')) {
+                        const badTheme = escapeHtml(input.substring(6).trim());
+                        printLine(`
+<div style="color: #ef4444;">Unknown theme palette: '${badTheme}'. Valid options: <span class="term-cyan">cyan</span>, <span class="term-green">emerald</span>, <span class="term-purple">purple</span>, <span style="color:#f43f5e;">crimson</span>.</div>
+                        `);
+                        break;
+                    }
                     printLine(`
 <div class="term-line"><span style="color: #ef4444;">Command not found:</span> '${escapeHtml(input)}'. Type <span class="term-yellow">'help'</span> for a list of available commands.</div>
                     `);

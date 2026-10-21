@@ -29,6 +29,13 @@
     <link rel="alternate icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Immediate Theme Application Script (Flash-Free) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('portfolio_theme') || 'cyan';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
 </head>
 <body class="{{ page }}">
     <!-- Reading Scroll Progress Bar -->
@@ -45,10 +52,41 @@
                 <li><a href="/contact" class="{% if page == 'contact' %}active{% endif %}">Contact</a></li>
                 <li><a href="/contact" class="btn-nav-cta"><i class="fa-solid fa-paper-plane"></i> Hire Me</a></li>
             </ul>
-            <div class="hamburger" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <div class="nav-actions">
+                <!-- Theme Palette Switcher -->
+                <div class="theme-switcher-wrapper">
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Customize Color Theme" title="Theme Palette">
+                        <i class="fa-solid fa-palette"></i>
+                    </button>
+                    <div id="themeDropdown" class="theme-dropdown glass-card" aria-hidden="true">
+                        <div class="theme-dropdown-header">Accent Glow</div>
+                        <div class="theme-options">
+                            <button class="theme-opt-btn" data-theme-name="cyan" title="Cyan Glow">
+                                <span class="theme-dot dot-cyan"></span>
+                                <span class="theme-name">Cyan Glow</span>
+                            </button>
+                            <button class="theme-opt-btn" data-theme-name="emerald" title="Emerald Matrix">
+                                <span class="theme-dot dot-emerald"></span>
+                                <span class="theme-name">Emerald Matrix</span>
+                            </button>
+                            <button class="theme-opt-btn" data-theme-name="purple" title="Purple Synthwave">
+                                <span class="theme-dot dot-purple"></span>
+                                <span class="theme-name">Purple Synth</span>
+                            </button>
+                            <button class="theme-opt-btn" data-theme-name="crimson" title="Crimson Red">
+                                <span class="theme-dot dot-crimson"></span>
+                                <span class="theme-name">Crimson Red</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hamburger" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>

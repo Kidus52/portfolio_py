@@ -36,6 +36,54 @@
     --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ==========================================================================
+   Color Accent & Theme Palette Overrides (Option 5)
+   ========================================================================== */
+
+/* 1. Cyan Glow (Default) */
+html[data-theme="cyan"] {
+    --accent-cyan: #06b6d4;
+    --accent-cyan-glow: rgba(6, 182, 212, 0.35);
+    --accent-blue: #3b82f6;
+    --accent-teal: #14b8a6;
+    --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    --border-accent: rgba(6, 182, 212, 0.35);
+    --shadow-glow: 0 0 25px rgba(6, 182, 212, 0.3);
+}
+
+/* 2. Emerald Matrix */
+html[data-theme="emerald"] {
+    --accent-cyan: #10b981;
+    --accent-cyan-glow: rgba(16, 185, 129, 0.35);
+    --accent-blue: #059669;
+    --accent-teal: #34d399;
+    --accent-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --border-accent: rgba(16, 185, 129, 0.35);
+    --shadow-glow: 0 0 25px rgba(16, 185, 129, 0.3);
+}
+
+/* 3. Purple Synthwave */
+html[data-theme="purple"] {
+    --accent-cyan: #a855f7;
+    --accent-cyan-glow: rgba(168, 85, 247, 0.35);
+    --accent-blue: #6366f1;
+    --accent-teal: #ec4899;
+    --accent-gradient: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+    --border-accent: rgba(168, 85, 247, 0.35);
+    --shadow-glow: 0 0 25px rgba(168, 85, 247, 0.3);
+}
+
+/* 4. Crimson Red */
+html[data-theme="crimson"] {
+    --accent-cyan: #f43f5e;
+    --accent-cyan-glow: rgba(244, 63, 94, 0.35);
+    --accent-blue: #e11d48;
+    --accent-teal: #fb7185;
+    --accent-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+    --border-accent: rgba(244, 63, 94, 0.35);
+    --shadow-glow: 0 0 25px rgba(244, 63, 94, 0.3);
+}
+
 /* --- Base & Reset --- */
 * {
     margin: 0;
@@ -186,6 +234,122 @@ nav {
     transform: translateY(-2px);
     box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
 }
+
+/* --- Navigation Actions & Theme Switcher --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme-switcher-wrapper {
+    position: relative;
+}
+
+.theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    color: var(--accent-cyan);
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-cyan);
+    transform: scale(1.08);
+    box-shadow: var(--shadow-glow);
+}
+
+.theme-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    min-width: 175px;
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+    background: rgba(11, 16, 27, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    z-index: 1000;
+}
+
+.theme-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.theme-dropdown-header {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.55rem;
+    padding-left: 0.4rem;
+}
+
+.theme-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.theme-opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.theme-opt-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.theme-opt-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: var(--border-accent);
+    font-weight: 600;
+}
+
+.theme-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.dot-cyan { background: #06b6d4; color: #06b6d4; }
+.dot-emerald { background: #10b981; color: #10b981; }
+.dot-purple { background: #a855f7; color: #a855f7; }
+.dot-crimson { background: #f43f5e; color: #f43f5e; }
 
 .hamburger {
     display: none;

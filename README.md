@@ -23,6 +23,11 @@
 
 - **⚡ Fast & Lightweight Backend**: Powered by Flask with minimal overhead, secure route handling, and clean Jinja2 templating.
 - **🎨 Glassmorphic & Cyber-Dark Aesthetic**: Custom CSS design system featuring deep navy backgrounds, glowing cyan/blue accents, backdrop filters, and fluid responsiveness across all screen sizes.
+- **🌈 Dynamic Color Accent & Theme Switcher**:
+  - Interactive navigation bar palette dropdown allowing visitors to customize portfolio accent glow in real-time.
+  - 4 Curated Palettes: **Cyan Glow** (default cyberpunk cyan), **Emerald Matrix** (hacker green), **Purple Synthwave** (retro neon violet), and **Crimson Red** (high-voltage ruby).
+  - **Zero-Flicker Local Persistence**: Choice is stored in `localStorage` and applied immediately before DOM render to eliminate FOUC (Flash of Unstyled Content).
+  - **CLI Integrated**: Switch themes directly from KidusOS terminal using `theme <cyan|emerald|purple|crimson>`.
 - **📂 Interactive Project Gallery with High-Fidelity UI Mockups**:
   - Custom-crafted SVG architecture mockups (Virtual Banking UI, Timetable Matrix, Flight Reservation Seat Map).
   - Hover zoom animations and dynamic status pills (`MySQL & SHA-256 Auth`, `0-Conflict Algorithm`, `Live Seat Booking`).
