@@ -252,6 +252,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 6.6 Copy Email to Clipboard (Option A) - Glassmorphic Toast
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const clipboardToast = document.getElementById('clipboardToast');
+
+    if (copyEmailBtn && clipboardToast) {
+        let toastTimeout;
+        copyEmailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText('kidustigistu3410@gmail.com').then(() => {
+                // Show toast
+                clipboardToast.classList.add('show');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    clipboardToast.classList.remove('show');
+                }, 2800);
+                // Flash the icon to a checkmark briefly
+                const icon = copyEmailBtn.querySelector('i');
+                icon.className = 'fa-solid fa-circle-check';
+                setTimeout(() => { icon.className = 'fa-solid fa-envelope'; }, 2000);
+            }).catch(() => {
+                // Fallback: open mailto if clipboard not available (e.g. http context)
+                window.location.href = 'mailto:kidustigistu3410@gmail.com';
+            });
+        });
+    }
+
+    // 6.7 Animated Stats Counter (Option D)
+    const statNumbers = document.querySelectorAll('.stat-item[data-target] .stat-number');
+
+    function animateCount(el, target, duration) {
+        let start = 0;
+        const step = Math.ceil(target / (duration / 40));
+        const timer = setInterval(() => {
+            start += step;
+            if (start >= target) {
+                start = target;
+                clearInterval(timer);
+                el.classList.add('counted');
+            }
+            el.textContent = start;
+        }, 40);
+    }
+
+    if (statNumbers.length > 0) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.closest('.stat-item').getAttribute('data-target'), 10);
+                    animateCount(el, target, 900);
+                    statsObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.6 });
+
+        statNumbers.forEach(el => statsObserver.observe(el));
+    }
+
     // 7. Interactive Developer Terminal (KidusOS CLI)
     const terminalLauncher = document.getElementById('terminalLauncher');
     const terminalModal = document.getElementById('terminalModal');

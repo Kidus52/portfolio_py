@@ -2357,3 +2357,181 @@ footer p {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
 }
+
+/* ==========================================================================
+   Hero Stats Counter Bar (Option D)
+   ========================================================================== */
+
+.hero-stats-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 3rem;
+    padding: 1.25rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.stat-plus {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    vertical-align: super;
+    line-height: 1;
+}
+
+.stat-text {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+    margin-top: 0.15rem;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 50px;
+    background: var(--border-glass);
+    flex-shrink: 0;
+    align-self: center;
+}
+
+/* Stats counter roll-up animation */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.stat-number.counted {
+    animation: countUp 0.5s ease forwards;
+}
+
+/* ==========================================================================
+   Copy Email Clipboard Toast (Option A)
+   ========================================================================== */
+
+.social-copy-email {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    padding: 0.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    border-radius: 50%;
+    position: relative;
+}
+
+.social-copy-email:hover {
+    color: var(--accent-cyan);
+    transform: translateY(-3px);
+}
+
+.social-copy-email::after {
+    content: 'Copy Email';
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(11, 16, 27, 0.95);
+    color: var(--accent-cyan);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-accent);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    font-family: var(--font-body);
+    letter-spacing: 0.03em;
+}
+
+.social-copy-email:hover::after {
+    opacity: 1;
+}
+
+.clipboard-toast {
+    position: fixed;
+    bottom: 7rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(11, 16, 27, 0.96);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-cyan);
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--radius-full);
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: var(--shadow-glow), 0 16px 40px rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.clipboard-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.clipboard-toast i {
+    font-size: 1.1rem;
+}

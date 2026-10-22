@@ -103,10 +103,19 @@
                 <a href="https://www.linkedin.com/in/kidus-tigistu" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://t.me/THEYCALLMESAINTLMAO" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                 <a href="https://www.instagram.com/_____kidus_____" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="mailto:kidustigistu3410@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                <button class="social-copy-email" id="copyEmailBtn" aria-label="Copy email address" title="Copy email: kidustigistu3410@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </button>
             </div>
         </div>
     </footer>
+
+    <!-- Clipboard Toast Notification -->
+    <div id="clipboardToast" class="clipboard-toast" role="alert" aria-live="polite">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>Email copied to clipboard!</span>
+    </div>
+
     <!-- Floating Terminal Launcher Trigger -->
     <button id="terminalLauncher" class="terminal-launcher" aria-label="Open Interactive CLI Terminal" title="Developer Terminal (Ctrl+K or ~)">
         <i class="fa-solid fa-terminal"></i>
