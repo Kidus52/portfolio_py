@@ -10,7 +10,40 @@
         <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
         <button class="filter-btn" data-filter="web">Web Apps</button>
     </div>
+
+    <!-- Tech Stack Keyword Search -->
+    <div class="tech-search-wrapper">
+        <div class="tech-search-input-group">
+            <i class="fa-solid fa-magnifying-glass tech-search-icon"></i>
+            <input
+                type="search"
+                id="techSearchInput"
+                class="tech-search-input"
+                placeholder="Filter by tech stack keyword (e.g. Python, MySQL, Flask, SQLite)..."
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Search projects by technology"
+            >
+            <button class="tech-search-clear" id="techSearchClear" title="Clear search" aria-label="Clear search">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="tech-search-chips" id="techSearchChips">
+            <span class="search-chip" data-keyword="Python">Python</span>
+            <span class="search-chip" data-keyword="Flask">Flask</span>
+            <span class="search-chip" data-keyword="MySQL">MySQL</span>
+            <span class="search-chip" data-keyword="SQLite">SQLite</span>
+            <span class="search-chip" data-keyword="JavaScript">JavaScript</span>
+        </div>
+    </div>
 </section>
+
+<div id="searchNoResults" class="search-no-results" style="display:none;">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <p>No projects found matching <strong id="searchNoResultsTerm"></strong></p>
+    <span>Try a different keyword or clear the search above.</span>
+</div>
+
 
 <section class="projects-gallery">
     <div class="project-grid">

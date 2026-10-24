@@ -110,7 +110,96 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 4.5 Tech Stack Keyword Search (Option C)
+    const techSearchInput = document.getElementById('techSearchInput');
+    const techSearchClear = document.getElementById('techSearchClear');
+    const searchChips = document.querySelectorAll('.search-chip');
+    const noResults = document.getElementById('searchNoResults');
+    const noResultsTerm = document.getElementById('searchNoResultsTerm');
+    const allProjectCards = document.querySelectorAll('.projects-gallery .project-card');
+
+    function runTechSearch(keyword) {
+        const term = keyword.trim().toLowerCase();
+
+        // Toggle clear button visibility
+        if (techSearchClear) techSearchClear.classList.toggle('visible', term.length > 0);
+
+        // Highlight active chip (if any matches)
+        searchChips.forEach(chip => {
+            chip.classList.toggle('active', chip.getAttribute('data-keyword').toLowerCase() === term);
+        });
+
+        let visibleCount = 0;
+        allProjectCards.forEach(card => {
+            // Build searchable text from title, description, and all tech tags
+            const titleText = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const descText = card.querySelector('p')?.textContent.toLowerCase() || '';
+            const techTagsText = Array.from(card.querySelectorAll('.tech-tag'))
+                .map(t => t.textContent.toLowerCase()).join(' ');
+            const fullText = `${titleText} ${descText} ${techTagsText}`;
+
+            const match = !term || fullText.includes(term);
+
+            if (match) {
+                card.style.display = 'flex';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 30);
+                visibleCount++;
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.92)';
+                setTimeout(() => { card.style.display = 'none'; }, 250);
+            }
+        });
+
+        // Show/hide no-results state
+        if (noResults) {
+            if (term && visibleCount === 0) {
+                noResults.style.display = 'block';
+                if (noResultsTerm) noResultsTerm.textContent = `"${keyword.trim()}"`;
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+    }
+
+    if (techSearchInput) {
+        // Live input listener — debounced 120ms
+        let searchDebounce;
+        techSearchInput.addEventListener('input', () => {
+            clearTimeout(searchDebounce);
+            searchDebounce = setTimeout(() => runTechSearch(techSearchInput.value), 120);
+        });
+
+        // Clear button
+        if (techSearchClear) {
+            techSearchClear.addEventListener('click', () => {
+                techSearchInput.value = '';
+                techSearchInput.focus();
+                runTechSearch('');
+            });
+        }
+
+        // Quick-pick chips
+        searchChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const kw = chip.getAttribute('data-keyword');
+                // Toggle: clicking an already-active chip clears the search
+                if (chip.classList.contains('active')) {
+                    techSearchInput.value = '';
+                    runTechSearch('');
+                } else {
+                    techSearchInput.value = kw;
+                    runTechSearch(kw);
+                }
+            });
+        });
+    }
+
     // 5. Project Details Modal Logic
+
     const modal = document.getElementById('projectModal');
     const closeModal = document.querySelector('.close-modal');
 
