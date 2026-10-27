@@ -95,4 +95,48 @@
         </div>
     </div>
 </section>
-{% endblock %}
+
+<!-- Certifications Section -->
+<section class="certifications-section">
+    <h2><i class="fa-solid fa-award"></i> Certifications</h2>
+    <div class="cert-grid">
+        <!-- UMD AI & Career Empowerment Certificate -->
+        <div class="cert-card glass-card">
+            <div class="cert-card-left">
+                <div class="cert-issuer-logo">
+                    <span class="cert-issuer-initials">UMD</span>
+                </div>
+            </div>
+            <div class="cert-card-body">
+                <div class="cert-badge-row">
+                    <span class="cert-type-pill"><i class="fa-solid fa-certificate"></i> Certificate of Completion</span>
+                    <span class="cert-date-pill"><i class="fa-regular fa-calendar"></i> June 27, 2025</span>
+                </div>
+                <h3 class="cert-title">AI and Career Empowerment</h3>
+                <p class="cert-issuer-name">University of Maryland &mdash; Robert H. Smith School of Business</p>
+                <p class="cert-desc">A non-credit executive education program through UMD's Office of Executive Education covering AI fundamentals and strategic career development in the modern AI-driven economy.</p>
+                <div class="cert-actions">
+                    <button class="cta-button primary-btn cert-view-btn"
+                        id="viewCertBtn"
+                        data-cert-src="{{ url_for('static', filename='img/cert_umd_ai.jpg') }}"
+                        data-cert-title="AI and Career Empowerment — UMD Smith School of Business">
+                        <i class="fa-solid fa-eye"></i> View Certificate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificate Lightbox Modal -->
+<div id="certLightbox" class="cert-lightbox" role="dialog" aria-hidden="true" aria-label="Certificate Preview">
+    <div class="cert-lightbox-backdrop" id="certLightboxBackdrop"></div>
+    <div class="cert-lightbox-content">
+        <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Close certificate preview">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="cert-lightbox-title-bar" id="certLightboxTitleBar"></div>
+        <img id="certLightboxImg" src="" alt="Certificate Preview" class="cert-lightbox-img">
+    </div>
+</div>
+{% endblock %}

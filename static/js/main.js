@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.project-card, .info-card, .skill-category-card, .timeline-item, .value-card, .contact-form-container, .info-item-card').forEach(el => {
+    document.querySelectorAll('.project-card, .info-card, .skill-category-card, .timeline-item, .value-card, .contact-form-container, .info-item-card, .cert-card').forEach(el => {
         el.classList.add('reveal-on-scroll');
         scrollObserver.observe(el);
     });
@@ -295,7 +295,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6.5 Color Accent & Theme Switcher (Option 5)
+    // 6.5 Certificate Lightbox (Certifications section on About page)
+    const certLightbox = document.getElementById('certLightbox');
+    const certLightboxImg = document.getElementById('certLightboxImg');
+    const certLightboxTitleBar = document.getElementById('certLightboxTitleBar');
+    const certLightboxClose = document.getElementById('certLightboxClose');
+    const certLightboxBackdrop = document.getElementById('certLightboxBackdrop');
+
+    function openCertLightbox(src, title) {
+        if (!certLightbox) return;
+        certLightboxImg.src = src;
+        certLightboxImg.alt = title;
+        if (certLightboxTitleBar) certLightboxTitleBar.textContent = title;
+        certLightbox.classList.add('open');
+        certLightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertLightbox() {
+        if (!certLightbox) return;
+        certLightbox.classList.remove('open');
+        certLightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cert-view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const src = btn.getAttribute('data-cert-src');
+            const title = btn.getAttribute('data-cert-title');
+            openCertLightbox(src, title);
+        });
+    });
+
+    if (certLightboxClose) certLightboxClose.addEventListener('click', closeCertLightbox);
+    if (certLightboxBackdrop) certLightboxBackdrop.addEventListener('click', closeCertLightbox);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCertLightbox();
+    });
+
+    // 6.6 Color Accent & Theme Switcher (Option 5)
+
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const themeDropdown = document.getElementById('themeDropdown');
     const themeOptBtns = document.querySelectorAll('.theme-opt-btn');

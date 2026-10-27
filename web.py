@@ -306,4 +306,4 @@ def not_found(e):
 
 if __name__ == '__main__':
     debug_mode = os.environ.get('FLASK_DEBUG', 'True').lower() in ('true', '1', 't')
-    web.run(debug=debug_mode)
+    web.run(debug=debug_mode)
