@@ -115,16 +115,16 @@ Message:
 PROJECTS = [
     {
         'id': 1,
-        'title': 'Web-Based Banking System',
+        'title': 'Client-Server Banking System',
         'category': 'fullstack',
-        'short_desc': 'A secure full-stack banking application with real-time transaction processing and user account dashboards.',
-        'full_desc': 'Built with Python (Flask) and MySQL database. Features robust authentication, password encryption, fund transfer management, transaction history logs, and administrative controls.',
+        'short_desc': 'A robust multi-tier banking application featuring client-server socket communication, role-based access, and SQL database management.',
+        'full_desc': 'Built with C#, .NET, and Microsoft SQL Server. Features a multi-threaded client/server architecture, role-based dashboards (User, Manager, SuperManager), transaction processing, account management, and automated SQL stored procedures.',
         'image': 'img/mockup_banking.svg',
-        'status': 'MySQL & SHA-256 Auth',
+        'status': 'C# & SQL Server',
         'status_type': 'cyan',
         'status_icon': 'fa-solid fa-shield-halved',
-        'tech': ['Python', 'Flask', 'MySQL', 'HTML5', 'CSS3', 'JavaScript'],
-        'github': 'https://github.com/Kidus52/Web-Based-Banking-System',
+        'tech': ['C#', '.NET', 'SQL Server', 'Socket Networking', 'Windows Forms'],
+        'github': 'https://github.com/Kidus52/Banking-System',
         'demo': '#'
     },
     {

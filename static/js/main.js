@@ -622,9 +622,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     printLine(`
 <div class="term-cyan">📂 Featured Projects:</div>
 <div style="margin: 0.3rem 0;">
-  <div><strong>1. Web-Based Banking System</strong> <span class="term-purple">[Full-Stack]</span></div>
-  <div class="term-muted">Secure banking system with real-time transaction processing, authentication & logs.</div>
-  <div>Tech: Python, Flask, MySQL, JavaScript | <a href="https://github.com/Kidus52/Web-Based-Banking-System" target="_blank" class="term-link">GitHub Repository ↗</a></div>
+  <div><strong>1. Client-Server Banking System</strong> <span class="term-purple">[Full-Stack]</span></div>
+  <div class="term-muted">Multi-tier banking application with socket networking, role-based controls & SQL database.</div>
+  <div>Tech: C#, .NET, SQL Server, Sockets | <a href="https://github.com/Kidus52/Banking-System" target="_blank" class="term-link">GitHub Repository ↗</a></div>
 </div>
 <div style="margin: 0.3rem 0;">
   <div><strong>2. Class Scheduler Application</strong> <span class="term-purple">[Web App]</span></div>
